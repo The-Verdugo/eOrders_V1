@@ -1,0 +1,1904 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://127.0.0.1/SAP/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://127.0.0.1/SAP/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web Service for SAP Business One</wsdl:documentation>
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://127.0.0.1/SAP/">
+      <s:element name="Login">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DatabaseServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DatabaseName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DatabaseType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DatabaseUsername" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DatabasePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyUsername" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Language" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LicenseServer" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginSSL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Token" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LoginSSLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LoginSSLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Logout">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogoutResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="LogoutResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Validate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidateResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="QR">
+        <s:complexType />
+      </s:element>
+      <s:element name="QRResponse">
+        <s:complexType />
+      </s:element>
+      <s:element name="ToolStrToXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Str" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ToolStrToXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ToolStrToXMLResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ToolGetFromXML">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Doc">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="TagName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Position" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ToolGetFromXMLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ToolGetFromXMLResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Interact">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SOAPCommand" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InteractResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InteractResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BatchInteract">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SOAPCommands" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="BatchInteractResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="BatchInteractResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InteractSOAPCommand">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="dis" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ServiceName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CommandID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="QueryParams" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ObjectName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ObjectContent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InteractSOAPCommandResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InteractSOAPCommandResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Token">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DatabaseServer" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DatabaseName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DatabaseType" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DatabaseUsername" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DatabasePassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyUsername" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CompanyPassword" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Language" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="LicenseServer" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="TokenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="TokenResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddObject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CommandID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ObjectName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ObjectContent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AddObjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AddObjectResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateObject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ObjectName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="QueryParams" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ObjectContent" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="UpdateObjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UpdateObjectResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveObject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ObjectName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="QueryParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RemoveObjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RemoveObjectResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelObject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ObjectName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="QueryParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CancelObjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CancelObjectResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CloseObject">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ObjectName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="QueryParams" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CloseObjectResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CloseObjectResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteSQL">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="DoQuery" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ExecuteSQLResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ExecuteSQLResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBPList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBPListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBPListResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBusinessObjectTemplate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ObjectName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBusinessObjectTemplateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBusinessObjectTemplateResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBusinessObjectXmlSchema">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ObjectName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetBusinessObjectXmlSchemaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetBusinessObjectXmlSchemaResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetByKey">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ObjectName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EntryName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="EntryValue" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetByKeyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetByKeyResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContactEmployees">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardCode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetContactEmployeesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetContactEmployeesResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrenceRate">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Currency" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="DateValue" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCurrenceRateResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetCurrenceRateResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetItemList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetItemListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetItemListResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetItemPrice">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ItemCode" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="Quantity" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="DateValue" type="s:dateTime" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetItemPriceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetItemPriceResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldValidValues">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TableName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="FieldName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFieldValidValuesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFieldValidValuesResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocalCurrency">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetLocalCurrencyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetLocalCurrencyResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetObjectKeyBySingleValue">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ObjectName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PropName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="PropValue" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Condition" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetObjectKeyBySingleValueResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetObjectKeyBySingleValueResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetObjectPermission">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ObjectName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetObjectPermissionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetObjectPermissionResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetServiceDatatXmlSchema">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Service" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Data" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetServiceDatatXmlSchemaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetServiceDatatXmlSchemaResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetServiceCallInputXMLSchema">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Command" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Service" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetServiceCallInputXMLSchemaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetServiceCallInputXMLSchemaResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemCurrency">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemCurrencyResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemCurrencyResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemPermission">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="PermissionID" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemPermissionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemPermissionResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableFieldList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableFieldListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTableFieldListResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetTableListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetTableListResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="CardType" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserListResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWareHouseList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetWareHouseListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetWareHouseListResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetSystemPermission">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SessionID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="PermissionID" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="Permission" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SetSystemPermissionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SetSystemPermissionResult">
+              <s:complexType mixed="true">
+                <s:sequence>
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="LoginSoapIn">
+    <wsdl:part name="parameters" element="tns:Login" />
+  </wsdl:message>
+  <wsdl:message name="LoginSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginResponse" />
+  </wsdl:message>
+  <wsdl:message name="LoginSSLSoapIn">
+    <wsdl:part name="parameters" element="tns:LoginSSL" />
+  </wsdl:message>
+  <wsdl:message name="LoginSSLSoapOut">
+    <wsdl:part name="parameters" element="tns:LoginSSLResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogoutSoapIn">
+    <wsdl:part name="parameters" element="tns:Logout" />
+  </wsdl:message>
+  <wsdl:message name="LogoutSoapOut">
+    <wsdl:part name="parameters" element="tns:LogoutResponse" />
+  </wsdl:message>
+  <wsdl:message name="ValidateSoapIn">
+    <wsdl:part name="parameters" element="tns:Validate" />
+  </wsdl:message>
+  <wsdl:message name="ValidateSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidateResponse" />
+  </wsdl:message>
+  <wsdl:message name="QRSoapIn">
+    <wsdl:part name="parameters" element="tns:QR" />
+  </wsdl:message>
+  <wsdl:message name="QRSoapOut">
+    <wsdl:part name="parameters" element="tns:QRResponse" />
+  </wsdl:message>
+  <wsdl:message name="ToolStrToXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:ToolStrToXML" />
+  </wsdl:message>
+  <wsdl:message name="ToolStrToXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:ToolStrToXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="ToolGetFromXMLSoapIn">
+    <wsdl:part name="parameters" element="tns:ToolGetFromXML" />
+  </wsdl:message>
+  <wsdl:message name="ToolGetFromXMLSoapOut">
+    <wsdl:part name="parameters" element="tns:ToolGetFromXMLResponse" />
+  </wsdl:message>
+  <wsdl:message name="InteractSoapIn">
+    <wsdl:part name="parameters" element="tns:Interact" />
+  </wsdl:message>
+  <wsdl:message name="InteractSoapOut">
+    <wsdl:part name="parameters" element="tns:InteractResponse" />
+  </wsdl:message>
+  <wsdl:message name="BatchInteractSoapIn">
+    <wsdl:part name="parameters" element="tns:BatchInteract" />
+  </wsdl:message>
+  <wsdl:message name="BatchInteractSoapOut">
+    <wsdl:part name="parameters" element="tns:BatchInteractResponse" />
+  </wsdl:message>
+  <wsdl:message name="InteractSOAPCommandSoapIn">
+    <wsdl:part name="parameters" element="tns:InteractSOAPCommand" />
+  </wsdl:message>
+  <wsdl:message name="InteractSOAPCommandSoapOut">
+    <wsdl:part name="parameters" element="tns:InteractSOAPCommandResponse" />
+  </wsdl:message>
+  <wsdl:message name="TokenSoapIn">
+    <wsdl:part name="parameters" element="tns:Token" />
+  </wsdl:message>
+  <wsdl:message name="TokenSoapOut">
+    <wsdl:part name="parameters" element="tns:TokenResponse" />
+  </wsdl:message>
+  <wsdl:message name="AddObjectSoapIn">
+    <wsdl:part name="parameters" element="tns:AddObject" />
+  </wsdl:message>
+  <wsdl:message name="AddObjectSoapOut">
+    <wsdl:part name="parameters" element="tns:AddObjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="UpdateObjectSoapIn">
+    <wsdl:part name="parameters" element="tns:UpdateObject" />
+  </wsdl:message>
+  <wsdl:message name="UpdateObjectSoapOut">
+    <wsdl:part name="parameters" element="tns:UpdateObjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="RemoveObjectSoapIn">
+    <wsdl:part name="parameters" element="tns:RemoveObject" />
+  </wsdl:message>
+  <wsdl:message name="RemoveObjectSoapOut">
+    <wsdl:part name="parameters" element="tns:RemoveObjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="CancelObjectSoapIn">
+    <wsdl:part name="parameters" element="tns:CancelObject" />
+  </wsdl:message>
+  <wsdl:message name="CancelObjectSoapOut">
+    <wsdl:part name="parameters" element="tns:CancelObjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="CloseObjectSoapIn">
+    <wsdl:part name="parameters" element="tns:CloseObject" />
+  </wsdl:message>
+  <wsdl:message name="CloseObjectSoapOut">
+    <wsdl:part name="parameters" element="tns:CloseObjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteSQLSoapIn">
+    <wsdl:part name="parameters" element="tns:ExecuteSQL" />
+  </wsdl:message>
+  <wsdl:message name="ExecuteSQLSoapOut">
+    <wsdl:part name="parameters" element="tns:ExecuteSQLResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBPListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBPList" />
+  </wsdl:message>
+  <wsdl:message name="GetBPListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBPListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBusinessObjectTemplateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBusinessObjectTemplate" />
+  </wsdl:message>
+  <wsdl:message name="GetBusinessObjectTemplateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBusinessObjectTemplateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetBusinessObjectXmlSchemaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetBusinessObjectXmlSchema" />
+  </wsdl:message>
+  <wsdl:message name="GetBusinessObjectXmlSchemaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetBusinessObjectXmlSchemaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetByKeySoapIn">
+    <wsdl:part name="parameters" element="tns:GetByKey" />
+  </wsdl:message>
+  <wsdl:message name="GetByKeySoapOut">
+    <wsdl:part name="parameters" element="tns:GetByKeyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetContactEmployeesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetContactEmployees" />
+  </wsdl:message>
+  <wsdl:message name="GetContactEmployeesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetContactEmployeesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrenceRateSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCurrenceRate" />
+  </wsdl:message>
+  <wsdl:message name="GetCurrenceRateSoapOut">
+    <wsdl:part name="parameters" element="tns:GetCurrenceRateResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetItemListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetItemList" />
+  </wsdl:message>
+  <wsdl:message name="GetItemListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetItemListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetItemPriceSoapIn">
+    <wsdl:part name="parameters" element="tns:GetItemPrice" />
+  </wsdl:message>
+  <wsdl:message name="GetItemPriceSoapOut">
+    <wsdl:part name="parameters" element="tns:GetItemPriceResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldValidValuesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFieldValidValues" />
+  </wsdl:message>
+  <wsdl:message name="GetFieldValidValuesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFieldValidValuesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetLocalCurrencySoapIn">
+    <wsdl:part name="parameters" element="tns:GetLocalCurrency" />
+  </wsdl:message>
+  <wsdl:message name="GetLocalCurrencySoapOut">
+    <wsdl:part name="parameters" element="tns:GetLocalCurrencyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetObjectKeyBySingleValueSoapIn">
+    <wsdl:part name="parameters" element="tns:GetObjectKeyBySingleValue" />
+  </wsdl:message>
+  <wsdl:message name="GetObjectKeyBySingleValueSoapOut">
+    <wsdl:part name="parameters" element="tns:GetObjectKeyBySingleValueResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetObjectPermissionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetObjectPermission" />
+  </wsdl:message>
+  <wsdl:message name="GetObjectPermissionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetObjectPermissionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceDatatXmlSchemaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetServiceDatatXmlSchema" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceDatatXmlSchemaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetServiceDatatXmlSchemaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceCallInputXMLSchemaSoapIn">
+    <wsdl:part name="parameters" element="tns:GetServiceCallInputXMLSchema" />
+  </wsdl:message>
+  <wsdl:message name="GetServiceCallInputXMLSchemaSoapOut">
+    <wsdl:part name="parameters" element="tns:GetServiceCallInputXMLSchemaResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemCurrencySoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemCurrency" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemCurrencySoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemCurrencyResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemPermissionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemPermission" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemPermissionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemPermissionResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTableFieldListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTableFieldList" />
+  </wsdl:message>
+  <wsdl:message name="GetTableFieldListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTableFieldListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetTableListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetTableList" />
+  </wsdl:message>
+  <wsdl:message name="GetTableListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetTableListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserList" />
+  </wsdl:message>
+  <wsdl:message name="GetUserListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserListResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetWareHouseListSoapIn">
+    <wsdl:part name="parameters" element="tns:GetWareHouseList" />
+  </wsdl:message>
+  <wsdl:message name="GetWareHouseListSoapOut">
+    <wsdl:part name="parameters" element="tns:GetWareHouseListResponse" />
+  </wsdl:message>
+  <wsdl:message name="SetSystemPermissionSoapIn">
+    <wsdl:part name="parameters" element="tns:SetSystemPermission" />
+  </wsdl:message>
+  <wsdl:message name="SetSystemPermissionSoapOut">
+    <wsdl:part name="parameters" element="tns:SetSystemPermissionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DI_x0020_ServerSoap">
+    <wsdl:operation name="Login">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method connects to a company database and returns a session ID that you must use in your messages within the session.</wsdl:documentation>
+      <wsdl:input message="tns:LoginSoapIn" />
+      <wsdl:output message="tns:LoginSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="LoginSSL">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method connects to a company database and returns a session ID that you must use in your messages within the session.</wsdl:documentation>
+      <wsdl:input message="tns:LoginSSLSoapIn" />
+      <wsdl:output message="tns:LoginSSLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method disconnects from the company database and releases the session.</wsdl:documentation>
+      <wsdl:input message="tns:LogoutSoapIn" />
+      <wsdl:output message="tns:LogoutSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Validate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Validate a Session ID.</wsdl:documentation>
+      <wsdl:input message="tns:ValidateSoapIn" />
+      <wsdl:output message="tns:ValidateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="QR">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Create QR image.</wsdl:documentation>
+      <wsdl:input message="tns:QRSoapIn" />
+      <wsdl:output message="tns:QRSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ToolStrToXML">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Convert string to xml.</wsdl:documentation>
+      <wsdl:input message="tns:ToolStrToXMLSoapIn" />
+      <wsdl:output message="tns:ToolStrToXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ToolGetFromXML">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Returns an innerxml from tagname and position.</wsdl:documentation>
+      <wsdl:input message="tns:ToolGetFromXMLSoapIn" />
+      <wsdl:output message="tns:ToolGetFromXMLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Interact">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">The Interact method is a SOAP request message, which must apply the business object schema.</wsdl:documentation>
+      <wsdl:input message="tns:InteractSoapIn" />
+      <wsdl:output message="tns:InteractSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="BatchInteract">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">The BatchInteract method enables you to perform multiple transactions in the database using a single SOAP request message.</wsdl:documentation>
+      <wsdl:input message="tns:BatchInteractSoapIn" />
+      <wsdl:output message="tns:BatchInteractSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InteractSOAPCommand">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Interact SOAP Command with the DI Server.</wsdl:documentation>
+      <wsdl:input message="tns:InteractSOAPCommandSoapIn" />
+      <wsdl:output message="tns:InteractSOAPCommandSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Token">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">This method create a token information.</wsdl:documentation>
+      <wsdl:input message="tns:TokenSoapIn" />
+      <wsdl:output message="tns:TokenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AddObject">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the AddObject command to add records to a business object. You can set only the Read/Write properties as defined in the business Object and Service schemas.</wsdl:documentation>
+      <wsdl:input message="tns:AddObjectSoapIn" />
+      <wsdl:output message="tns:AddObjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="UpdateObject">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the UpdateObject command to modify data in SAP Business One company database. The data can be any business data that is supported by the business object schemas. The object data must include values for the key and mandatory properties as defined in SAP Business One.</wsdl:documentation>
+      <wsdl:input message="tns:UpdateObjectSoapIn" />
+      <wsdl:output message="tns:UpdateObjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RemoveObject">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the RemoveObject command to delete data from the database. This command is supported only for DI objects that support the Remove method (see the DI API documentation).</wsdl:documentation>
+      <wsdl:input message="tns:RemoveObjectSoapIn" />
+      <wsdl:output message="tns:RemoveObjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CancelObject">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the CancelObject command to cancel a record. You set the value of the key properties in the QueryParams element.</wsdl:documentation>
+      <wsdl:input message="tns:CancelObjectSoapIn" />
+      <wsdl:output message="tns:CancelObjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CloseObject">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the CloseObject command to close a record of the object table. You set the value of the key properties in the QueryParams element.</wsdl:documentation>
+      <wsdl:input message="tns:CloseObjectSoapIn" />
+      <wsdl:output message="tns:CloseObjectSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteSQL">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the ExecuteSQL command to runs SQL queries.</wsdl:documentation>
+      <wsdl:input message="tns:ExecuteSQLSoapIn" />
+      <wsdl:output message="tns:ExecuteSQLSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBPList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the GetBPList command to retrieve the business partners list.</wsdl:documentation>
+      <wsdl:input message="tns:GetBPListSoapIn" />
+      <wsdl:output message="tns:GetBPListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBusinessObjectTemplate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the GetBusinessObjectTemplate to retrieve the XML template of a specified business object.</wsdl:documentation>
+      <wsdl:input message="tns:GetBusinessObjectTemplateSoapIn" />
+      <wsdl:output message="tns:GetBusinessObjectTemplateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetBusinessObjectXmlSchema">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the GetBusinessObjectXmlSchema command to retrieve the XML schema of a specified business object.</wsdl:documentation>
+      <wsdl:input message="tns:GetBusinessObjectXmlSchemaSoapIn" />
+      <wsdl:output message="tns:GetBusinessObjectXmlSchemaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetByKey">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the GetByKey command to retrieve data from SAP Business One database.</wsdl:documentation>
+      <wsdl:input message="tns:GetByKeySoapIn" />
+      <wsdl:output message="tns:GetByKeySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetContactEmployees">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the GetContactEmployees command to retrieve a list of contact employees for a specified business partner.</wsdl:documentation>
+      <wsdl:input message="tns:GetContactEmployeesSoapIn" />
+      <wsdl:output message="tns:GetContactEmployeesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrenceRate">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the GetCurrenceRate to retrieve the currency rate for a specified date and currency code.</wsdl:documentation>
+      <wsdl:input message="tns:GetCurrenceRateSoapIn" />
+      <wsdl:output message="tns:GetCurrenceRateSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItemList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the GetItemList command to retrieve the items list.</wsdl:documentation>
+      <wsdl:input message="tns:GetItemListSoapIn" />
+      <wsdl:output message="tns:GetItemListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetItemPrice">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the GetItemPrice command to retrieve the item price for a specified business partner and item, based on the amount and transaction date.</wsdl:documentation>
+      <wsdl:input message="tns:GetItemPriceSoapIn" />
+      <wsdl:output message="tns:GetItemPriceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldValidValues">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the GetFieldValidValues command to retrieve valid values of a specified field.</wsdl:documentation>
+      <wsdl:input message="tns:GetFieldValidValuesSoapIn" />
+      <wsdl:output message="tns:GetFieldValidValuesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocalCurrency">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the GetLocalCurrency command to retrieve the local currency defined in the company database.</wsdl:documentation>
+      <wsdl:input message="tns:GetLocalCurrencySoapIn" />
+      <wsdl:output message="tns:GetLocalCurrencySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetObjectKeyBySingleValue">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the GetObjectKeyBySingleValue command, as a filter, to retrieve the keys of all the records of a specified object name by a single value.</wsdl:documentation>
+      <wsdl:input message="tns:GetObjectKeyBySingleValueSoapIn" />
+      <wsdl:output message="tns:GetObjectKeyBySingleValueSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetObjectPermission">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the GetObjectPermission command to retrieve the permission type, of a specified object ID, assigned to the user (which is currently connected to the database).</wsdl:documentation>
+      <wsdl:input message="tns:GetObjectPermissionSoapIn" />
+      <wsdl:output message="tns:GetObjectPermissionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceDatatXmlSchema">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the GetBusinessObjectTemplate to retrieve the XML template of a specified business object.</wsdl:documentation>
+      <wsdl:input message="tns:GetServiceDatatXmlSchemaSoapIn" />
+      <wsdl:output message="tns:GetServiceDatatXmlSchemaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceCallInputXMLSchema">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the GetServiceCallInputXmlSchema command to retrieve the XML schema of a call message.</wsdl:documentation>
+      <wsdl:input message="tns:GetServiceCallInputXMLSchemaSoapIn" />
+      <wsdl:output message="tns:GetServiceCallInputXMLSchemaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemCurrency">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the GetSystemCurrency command to retrieve the system currency defined in the company database.</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemCurrencySoapIn" />
+      <wsdl:output message="tns:GetSystemCurrencySoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemPermission">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the GetSystemPermission command to retrieve the permission of a specified user and permission ID.</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemPermissionSoapIn" />
+      <wsdl:output message="tns:GetSystemPermissionSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTableFieldList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the GetTableFieldList command to retrieve the fields list for a specified table.</wsdl:documentation>
+      <wsdl:input message="tns:GetTableFieldListSoapIn" />
+      <wsdl:output message="tns:GetTableFieldListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTableList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the GetTableList command to retrieve a list of all tables in the database.</wsdl:documentation>
+      <wsdl:input message="tns:GetTableListSoapIn" />
+      <wsdl:output message="tns:GetTableListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the GetUserList command to retrieve the users list of SAP Business One.</wsdl:documentation>
+      <wsdl:input message="tns:GetUserListSoapIn" />
+      <wsdl:output message="tns:GetUserListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetWareHouseList">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the GetWareHouseList command to retrieve the warehouses list defined in the company database.</wsdl:documentation>
+      <wsdl:input message="tns:GetWareHouseListSoapIn" />
+      <wsdl:output message="tns:GetWareHouseListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SetSystemPermission">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Use the SetSystemPermission command to set the permission of a specified user and permission ID.</wsdl:documentation>
+      <wsdl:input message="tns:SetSystemPermissionSoapIn" />
+      <wsdl:output message="tns:SetSystemPermissionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DI_x0020_ServerSoap" type="tns:DI_x0020_ServerSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap:operation soapAction="http://127.0.0.1/SAP/Login" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginSSL">
+      <soap:operation soapAction="http://127.0.0.1/SAP/LoginSSL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <soap:operation soapAction="http://127.0.0.1/SAP/Logout" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Validate">
+      <soap:operation soapAction="http://127.0.0.1/SAP/Validate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QR">
+      <soap:operation soapAction="http://127.0.0.1/SAP/QR" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ToolStrToXML">
+      <soap:operation soapAction="http://127.0.0.1/SAP/ToolStrToXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ToolGetFromXML">
+      <soap:operation soapAction="http://127.0.0.1/SAP/ToolGetFromXML" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Interact">
+      <soap:operation soapAction="http://127.0.0.1/SAP/Interact" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BatchInteract">
+      <soap:operation soapAction="http://127.0.0.1/SAP/BatchInteract" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InteractSOAPCommand">
+      <soap:operation soapAction="http://127.0.0.1/SAP/InteractSOAPCommand" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Token">
+      <soap:operation soapAction="http://127.0.0.1/SAP/Token" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddObject">
+      <soap:operation soapAction="http://127.0.0.1/SAP/AddObject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateObject">
+      <soap:operation soapAction="http://127.0.0.1/SAP/UpdateObject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveObject">
+      <soap:operation soapAction="http://127.0.0.1/SAP/RemoveObject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelObject">
+      <soap:operation soapAction="http://127.0.0.1/SAP/CancelObject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloseObject">
+      <soap:operation soapAction="http://127.0.0.1/SAP/CloseObject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteSQL">
+      <soap:operation soapAction="http://127.0.0.1/SAP/ExecuteSQL" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBPList">
+      <soap:operation soapAction="http://127.0.0.1/SAP/GetBPList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBusinessObjectTemplate">
+      <soap:operation soapAction="http://127.0.0.1/SAP/GetBusinessObjectTemplate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBusinessObjectXmlSchema">
+      <soap:operation soapAction="http://127.0.0.1/SAP/GetBusinessObjectXmlSchema" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByKey">
+      <soap:operation soapAction="http://127.0.0.1/SAP/GetByKey" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactEmployees">
+      <soap:operation soapAction="http://127.0.0.1/SAP/GetContactEmployees" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrenceRate">
+      <soap:operation soapAction="http://127.0.0.1/SAP/GetCurrenceRate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItemList">
+      <soap:operation soapAction="http://127.0.0.1/SAP/GetItemList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItemPrice">
+      <soap:operation soapAction="http://127.0.0.1/SAP/GetItemPrice" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldValidValues">
+      <soap:operation soapAction="http://127.0.0.1/SAP/GetFieldValidValues" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocalCurrency">
+      <soap:operation soapAction="http://127.0.0.1/SAP/GetLocalCurrency" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetObjectKeyBySingleValue">
+      <soap:operation soapAction="http://127.0.0.1/SAP/GetObjectKeyBySingleValue" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetObjectPermission">
+      <soap:operation soapAction="http://127.0.0.1/SAP/GetObjectPermission" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceDatatXmlSchema">
+      <soap:operation soapAction="http://127.0.0.1/SAP/GetServiceDatatXmlSchema" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceCallInputXMLSchema">
+      <soap:operation soapAction="http://127.0.0.1/SAP/GetServiceCallInputXMLSchema" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemCurrency">
+      <soap:operation soapAction="http://127.0.0.1/SAP/GetSystemCurrency" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemPermission">
+      <soap:operation soapAction="http://127.0.0.1/SAP/GetSystemPermission" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTableFieldList">
+      <soap:operation soapAction="http://127.0.0.1/SAP/GetTableFieldList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTableList">
+      <soap:operation soapAction="http://127.0.0.1/SAP/GetTableList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserList">
+      <soap:operation soapAction="http://127.0.0.1/SAP/GetUserList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWareHouseList">
+      <soap:operation soapAction="http://127.0.0.1/SAP/GetWareHouseList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetSystemPermission">
+      <soap:operation soapAction="http://127.0.0.1/SAP/SetSystemPermission" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DI_x0020_ServerSoap12" type="tns:DI_x0020_ServerSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="Login">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/Login" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="LoginSSL">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/LoginSSL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logout">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/Logout" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Validate">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/Validate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QR">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/QR" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ToolStrToXML">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/ToolStrToXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ToolGetFromXML">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/ToolGetFromXML" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Interact">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/Interact" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="BatchInteract">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/BatchInteract" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InteractSOAPCommand">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/InteractSOAPCommand" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Token">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/Token" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AddObject">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/AddObject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="UpdateObject">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/UpdateObject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RemoveObject">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/RemoveObject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CancelObject">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/CancelObject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CloseObject">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/CloseObject" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ExecuteSQL">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/ExecuteSQL" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBPList">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/GetBPList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBusinessObjectTemplate">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/GetBusinessObjectTemplate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetBusinessObjectXmlSchema">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/GetBusinessObjectXmlSchema" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetByKey">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/GetByKey" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetContactEmployees">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/GetContactEmployees" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCurrenceRate">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/GetCurrenceRate" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItemList">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/GetItemList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetItemPrice">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/GetItemPrice" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFieldValidValues">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/GetFieldValidValues" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocalCurrency">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/GetLocalCurrency" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetObjectKeyBySingleValue">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/GetObjectKeyBySingleValue" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetObjectPermission">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/GetObjectPermission" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceDatatXmlSchema">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/GetServiceDatatXmlSchema" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetServiceCallInputXMLSchema">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/GetServiceCallInputXMLSchema" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemCurrency">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/GetSystemCurrency" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemPermission">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/GetSystemPermission" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTableFieldList">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/GetTableFieldList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTableList">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/GetTableList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserList">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/GetUserList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetWareHouseList">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/GetWareHouseList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetSystemPermission">
+      <soap12:operation soapAction="http://127.0.0.1/SAP/SetSystemPermission" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="DI_x0020_Server">
+    <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">Web Service for SAP Business One</wsdl:documentation>
+    <wsdl:port name="DI_x0020_ServerSoap" binding="tns:DI_x0020_ServerSoap">
+      <soap:address location="http://10.0.0.19/SAP/DIServer.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DI_x0020_ServerSoap12" binding="tns:DI_x0020_ServerSoap12">
+      <soap12:address location="http://10.0.0.19/SAP/DIServer.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
