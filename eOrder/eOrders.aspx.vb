@@ -32,6 +32,7 @@ Public Class eOrders
         '    ctrl.DefaultIfEmpty(wcICausedPostBack).First().Focus()
         'End If
 
+
         If Not IsPostBack Then
             TimeOver()
             btnDelete_Click()
@@ -125,11 +126,6 @@ Public Class eOrders
             ClearMemory()
         End Using
     End Sub
-
-
-
-
-
     Protected Sub TxtItemCode_TextChanged(sender As Object, e As EventArgs) Handles TxtItemCode.TextChanged
         Dim Item As String
         Try
@@ -339,6 +335,28 @@ Public Class eOrders
             End If
         End If
     End Sub
+    Protected Function validarCampos() As String
+        Dim valores As String = ""
+        Dim camposValidos As Boolean = True
+
+        If TextNombre.Text = "" And TextAPP.Text = "" And TextRFC.Text = "" And TextCalle.Text = "" And TextNoEx.Text = "" And TextEstado.Text = "" And TextCP.Text = "" Then
+            Return "1"
+        Else
+            If TextNombre.Text = "" Or TextAPP.Text = "" Or TextRFC.Text = "" Or TextCalle.Text = "" Or TextNoEx.Text = "" Or TextEstado.Text = "" Or TextCP.Text = "" Then
+                camposValidos = False
+            End If
+
+            If camposValidos Then
+                valores = TipoTP.SelectedValue & "|" & TextNombre.Text & "|" & TextAPP.Text & "|" & TextAPM.Text & "|" & TextRFC.Text & "|" & TextCalle.Text & "|" & TextNoEx.Text & "|" & TextNoInt.Text & "|" & TextColonia.Text & "|" & TextMunicipio.Text & "|" & TextCuidad.Text & "|" & TextEstado.Text & "|" & TextPais.SelectedValue & "|" & TextCP.Text & "|" & DropDownTipoC.SelectedValue & "|" & DropDownRegimen.SelectedValue
+                Return valores
+            Else
+                lblErrId.Text = "Error"
+                ErrorNum.Text = "-50"
+                ErrorMsg.Text = "Faltan campos obligatorios para tercera persona, favor de validar o limpiar"
+                Return "-1"
+            End If
+        End If
+    End Function
 
     Protected Sub SaveDocument(ByVal edo As String, ByVal numatcard As String)
         Try
@@ -570,11 +588,11 @@ Public Class eOrders
                 Dim Entrega As String
                 Dim EntregaBO As String
                 If LstDirs.SelectedValue = "Personalizada" Then
-                    Entrega = "<ShipToCode></ShipToCode><Address2>" & TxtDir.Text.ToString & "</Address2><Comments>" & TxtDir.Text.ToString & "</Comments>"
-                    EntregaBO = "<ShipToCode></ShipToCode><Address2>" & TxtDir.Text.ToString & "</Address2>"
+                    Entrega = "<ShipToCode></ShipToCode><Address2>" & TxtDir.Text.ToString & "</Address2><Comments>" & TxtDir.Text.ToString & " | " & TextComment.Text.ToString & "</Comments>"
+                    EntregaBO = "<ShipToCode></ShipToCode><Address2>" & TxtDir.Text.ToString & "</Address2>" & "<Comments>" & TextComment.Text.ToString & " | " & TextComment.Text.ToString & "</Comments>"
                 Else
-                    Entrega = "<ShipToCode>" & LstDirs.SelectedValue & "</ShipToCode>"
-                    EntregaBO = "<ShipToCode>" & LstDirs.SelectedValue & "</ShipToCode>"
+                    Entrega = "<ShipToCode>" & LstDirs.SelectedValue & "</ShipToCode>" & "<Comments>" & LstDirs.SelectedValue & " | " & TextComment.Text.ToString & "</Comments>"
+                    EntregaBO = "<ShipToCode>" & LstDirs.SelectedValue & "</ShipToCode>" & "<Comments>" & LstDirs.SelectedValue & " | " & TextComment.Text.ToString & "</Comments>"
                 End If
 
                 'Dim Encabezado As String = "<Documents><row><DocType>dDocument_Items</DocType><SalesPersonCode>" & TxtSlpCode.Text.ToString & "</SalesPersonCode>" & Entrega & "<DocDate>" & Now.ToString("yyyyMMdd") & "</DocDate><DocDueDate>" & Now.ToString("yyyyMMdd") & "</DocDueDate><TaxDate>" & Now.ToString("yyyyMMdd") & "</TaxDate><CardCode>" & TxtCardCode.Text.ToString & "</CardCode><NumAtCard>E" & TxtSlpCode.Text.ToString & "-" & DocE & "</NumAtCard><DocCurrency>" & Moneda & "</DocCurrency><U_MetodoDePago>" & LstMP.SelectedValue & "</U_MetodoDePago><U_FormaDePago>" & LstFP.SelectedValue & "</U_FormaDePago><U_UsoCFDI>" & LstUso.SelectedValue & "</U_UsoCFDI><U_TipoDeComprobante>" & LstTipo.SelectedValue & "</U_TipoDeComprobante><U_TPersona>" & LstTP.SelectedValue & "</U_TPersona><U_Promocion>" & LstPromos.SelectedValue & "</U_Promocion><U_megavol>" & LstMV.SelectedValue & "</U_megavol><U_Stock>" & LstStock.SelectedValue & "</U_Stock><U_InvoiceId>" & VentaDirecta & "</U_InvoiceId></row></Documents>"
@@ -587,9 +605,9 @@ Public Class eOrders
                 Dim Fecha_jbqb As String
                 'Dim Fecha_jbqb_V As String
 
-                'Fecha_jbqb = Now.ToString("yyyyMMdd")
+                Fecha_jbqb = Now.ToString("yyyyMMdd")
 
-                Fecha_jbqb = "20190930"
+                'Fecha_jbqb = "20190930"
 
                 'Fecha_jbqb_V = Now.ToString + 1
 
@@ -599,16 +617,17 @@ Public Class eOrders
 
 
                 'Dim Encabezado As String = "<Documents><row><DocType>dDocument_Items</DocType><SalesPersonCode>" & TxtSlpCode.Text.ToString & "</SalesPersonCode>" & Entrega & "<DocDate>" & Fecha_jbqb & "</DocDate><DocDueDate>" & Fecha_jbqb & "</DocDueDate><TaxDate>" & Fecha_jbqb & "</TaxDate><CardCode>" & TxtCardCode.Text.ToString & "</CardCode><NumAtCard>E" & TxtSlpCode.Text.ToString & "-" & DocE & "</NumAtCard><DocCurrency>" & Moneda & "</DocCurrency><U_MetodoDePago>" & LstMP.SelectedValue & "</U_MetodoDePago><U_FormaDePago>" & LstFP.SelectedValue & "</U_FormaDePago><U_UsoCFDI>" & LstUso.SelectedValue & "</U_UsoCFDI><U_TipoDeComprobante>" & LstTipo.SelectedValue & "</U_TipoDeComprobante><U_TPersona>" & LstTP.SelectedValue & "</U_TPersona><U_Promocion>" & LstPromos.SelectedValue & "</U_Promocion><U_megavol>" & LstMV.SelectedValue & "</U_megavol><U_Stock>" & LstStock.SelectedValue & "</U_Stock><U_InvoiceId>" & VentaDirecta & "</U_InvoiceId></row></Documents>"
-
-
-                Dim Encabezado As String = "<Documents><row><DocType>dDocument_Items</DocType><SalesPersonCode>" & TxtSlpCode.Text.ToString & "</SalesPersonCode>" & Entrega & "<DocDate>" & Fecha_jbqb & "</DocDate><DocDueDate>" & Fecha_jbqb & "</DocDueDate><TaxDate>" & Fecha_jbqb & "</TaxDate><CardCode>" & TxtCardCode.Text.ToString & "</CardCode><NumAtCard>E" & TxtSlpCode.Text.ToString & "-" & DocE & "</NumAtCard><DocCurrency>" & Moneda & "</DocCurrency><U_MetodoDePago>" & LstMP.SelectedValue & "</U_MetodoDePago><U_FormaDePago>" & LstFP.SelectedValue & "</U_FormaDePago><U_UsoCFDI>" & LstUso.SelectedValue & "</U_UsoCFDI><U_TipoDeComprobante>" & LstTipo.SelectedValue & "</U_TipoDeComprobante><U_TPersona>" & LstTP.SelectedValue & "</U_TPersona><U_Promocion>" & LstPromos.SelectedValue & "</U_Promocion><U_megavol>" & LstMV.SelectedValue & "</U_megavol><U_Stock>" & LstStock.SelectedValue & "</U_Stock><U_InvoiceId>" & VentaDirecta & "</U_InvoiceId></row></Documents>"
-
-
+                Dim Encabezado As String
+                If validarCampos() = "1" Then
+                    Encabezado = "<Documents><row><DocType>dDocument_Items</DocType><SalesPersonCode>" & TxtSlpCode.Text.ToString & "</SalesPersonCode>" & Entrega & "<DocDate>" & Fecha_jbqb & "</DocDate><DocDueDate>" & Fecha_jbqb & "</DocDueDate><TaxDate>" & Fecha_jbqb & "</TaxDate><CardCode>" & TxtCardCode.Text.ToString & "</CardCode><NumAtCard>E" & TxtSlpCode.Text.ToString & "-" & DocE & "</NumAtCard><DocCurrency>" & Moneda & "</DocCurrency><U_MetodoDePago>" & LstMP.SelectedValue & "</U_MetodoDePago><U_FormaDePago>" & LstFP.SelectedValue & "</U_FormaDePago><U_UsoCFDI>" & LstUso.SelectedValue & "</U_UsoCFDI><U_TipoDeComprobante>" & LstTipo.SelectedValue & "</U_TipoDeComprobante><U_TPersona>" & LstTP.SelectedValue & "</U_TPersona><U_Promocion>" & LstPromos.SelectedValue & "</U_Promocion><U_megavol>" & LstMV.SelectedValue & "</U_megavol><U_Stock>" & LstStock.SelectedValue & "</U_Stock><U_InvoiceId>" & VentaDirecta & "</U_InvoiceId></row></Documents>"
+                ElseIf validarCampos() IsNot "-1" Then
+                    Encabezado = "<Documents><row><DocType>dDocument_Items</DocType><SalesPersonCode>" & TxtSlpCode.Text.ToString & "</SalesPersonCode>" & Entrega & "<DocDate>" & Fecha_jbqb & "</DocDate><DocDueDate>" & Fecha_jbqb & "</DocDueDate><TaxDate>" & Fecha_jbqb & "</TaxDate><CardCode>" & TxtCardCode.Text.ToString & "</CardCode><NumAtCard>E" & TxtSlpCode.Text.ToString & "-" & DocE & "</NumAtCard><DocCurrency>" & Moneda & "</DocCurrency><U_MetodoDePago>" & LstMP.SelectedValue & "</U_MetodoDePago><U_FormaDePago>" & LstFP.SelectedValue & "</U_FormaDePago><U_UsoCFDI>" & LstUso.SelectedValue & "</U_UsoCFDI><U_TipoDeComprobante>" & LstTipo.SelectedValue & "</U_TipoDeComprobante><U_TPersona>1</U_TPersona><U_Promocion>" & LstPromos.SelectedValue & "</U_Promocion><U_megavol>" & LstMV.SelectedValue & "</U_megavol><U_Stock>" & LstStock.SelectedValue & "</U_Stock><U_InvoiceId>" & VentaDirecta & "</U_InvoiceId><U_Hospitales>" & validarCampos() & "</U_Hospitales></row></Documents>"
+                End If
 
                 Dim Pedidonl As String = "<env:Envelope xmlns:env=""http://www.w3.org/2003/05/soap-envelope""><env:Header><SessionID>" & SessionId & "</SessionID></env:Header><env:Body><dis:AddObject xmlns:dis=""http//www.sap.com/SBO/DIS""><BOM><BO><AdmInfo><Object>oOrders</Object></AdmInfo>" & Encabezado & LineasNL & "</BO></BOM></dis:AddObject></env:Body></env:Envelope>"
                 Dim Pedidobo2 As String = "<env:Envelope xmlns:env=""http://www.w3.org/2003/05/soap-envelope""><env:Header><SessionID>" & SessionId & "</SessionID></env:Header><env:Body><dis:AddObject xmlns:dis=""http//www.sap.com/SBO/DIS""><BOM><BO><AdmInfo><Object>oOrders</Object></AdmInfo>" & Encabezado & LineasBO & "</BO></BOM></dis:AddObject></env:Body></env:Envelope>"
 
-                If AutNl = True Then
+                If AutNl = True And validarCampos() IsNot "-1" Then
                     Dim envio As System.Xml.XmlNode = DS.Interact(Pedidonl)
                     Dim DESAP As String
 
@@ -628,12 +647,12 @@ Public Class eOrders
                                 DESAPbo = enviobo.ChildNodes.Item(0).ChildNodes.Item(0).ChildNodes.Item(0).InnerText
                                 Dim UpdDocbo As String = "<env:Envelope xmlns:env=""http://www.w3.org/2003/05/soap-envelope""><env:Header><SessionID>" & SessionId & "</SessionID></env:Header><env:Body><dis:UpdateObject xmlns:dis=""http//www.sap.com/SBO/DIS""><BOM><BO><AdmInfo><Object>oOrders</Object></AdmInfo><QueryParams><DocEntry>" & DESAPbo & "</DocEntry></QueryParams><Documents><row><NumAtCard>" & "C" & TxtSlpCode.Text.ToString & "-" & DESAPbo & "</NumAtCard></row></Documents></BO></BOM></dis:UpdateObject></env:Body></env:Envelope>"
                                 Dim ActPedidobo As System.Xml.XmlNode = DS.Interact(UpdDocbo)
-                                Dim Mailbo As String = Funciones.EnviaMail("C" & TxtSlpCode.Text.ToString & "-" & DESAPbo)
+                                Dim Mailbo As String = Funciones.EnviaMail("C" & TxtSlpCode.Text.ToString & "-" & DESAPbo, TextMail.Text.ToString)
                                 OkMsg.Text = OkMsg.Text & "<br /><br />Se ha generado el complemento de pedido electrónico para backorder <b>" & "C" & TxtSlpCode.Text.ToString & "-" & DESAPbo & "</b> de forma satisfactoria!"
                             End If
                         End If
                         SaveDocument("C", OkNum.Text.ToString)
-                        Dim Mail As String = Funciones.EnviaMail(OkNum.Text.ToString)
+                        Dim Mail As String = Funciones.EnviaMail(OkNum.Text.ToString, TextMail.Text.ToString)
                         If Mail <> "" Then
                             OkMsg.Text = OkMsg.Text & "<br /><br />" & Mail.Replace(";", "<br />")
                         End If
@@ -644,7 +663,7 @@ Public Class eOrders
                     End If
                 End If
 
-                If AutBO = True And AutNl = False Then
+                If AutBO = True And AutNl = False And validarCampos() IsNot "-1" Then
                     Dim enviobo2 As System.Xml.XmlNode = DS.Interact(Pedidobo2)
                     Dim DESAPbo2 As String
 
@@ -657,7 +676,7 @@ Public Class eOrders
                         Dim UpdDoc As String = "<env:Envelope xmlns:env=""http://www.w3.org/2003/05/soap-envelope""><env:Header><SessionID>" & SessionId & "</SessionID></env:Header><env:Body><dis:UpdateObject xmlns:dis=""http//www.sap.com/SBO/DIS""><BOM><BO><AdmInfo><Object>oOrders</Object></AdmInfo><QueryParams><DocEntry>" & DESAPbo2 & "</DocEntry></QueryParams><Documents><row><NumAtCard>" & OkNum.Text.ToString & "</NumAtCard></row></Documents></BO></BOM></dis:UpdateObject></env:Body></env:Envelope>"
                         Dim ActPedido As System.Xml.XmlNode = DS.Interact(UpdDoc)
                         SaveDocument("C", OkNum.Text.ToString)
-                        Dim Mail As String = Funciones.EnviaMail(OkNum.Text.ToString)
+                        Dim Mail As String = Funciones.EnviaMail(OkNum.Text.ToString, TextMail.Text.ToString)
                         If Mail <> "" Then
                             OkMsg.Text = OkMsg.Text & "<br /><br />" & Mail.Replace(";", "<br />")
                         End If

@@ -12,7 +12,7 @@ Option Explicit On
 
 
 Partial Public Class eOrders
-    
+
     '''<summary>
     '''ErrorNum control.
     '''</summary>
@@ -21,7 +21,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ErrorNum As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''ErrorMsg control.
     '''</summary>
@@ -30,7 +30,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents ErrorMsg As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''OkNum control.
     '''</summary>
@@ -39,7 +39,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents OkNum As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''OkMsg control.
     '''</summary>
@@ -48,7 +48,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents OkMsg As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtFechaHora control.
     '''</summary>
@@ -57,70 +57,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtFechaHora As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''TxtDocDate control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents TxtDocDate As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''TxtAlmacen control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents TxtAlmacen As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''TxtWhsCode control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents TxtWhsCode As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''TxtWhsName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents TxtWhsName As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''TxtDistribuidor control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents TxtDistribuidor As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''TxtSlpCode control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents TxtSlpCode As Global.System.Web.UI.WebControls.TextBox
-    
-    '''<summary>
-    '''TxtSlpName control.
-    '''</summary>
-    '''<remarks>
-    '''Auto-generated field.
-    '''To modify move field declaration from designer file to code-behind file.
-    '''</remarks>
-    Protected WithEvents TxtSlpName As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''TxtCardCode control.
     '''</summary>
@@ -129,7 +66,70 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtCardCode As Global.System.Web.UI.WebControls.TextBox
-    
+
+    '''<summary>
+    '''TxtDocDate control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TxtDocDate As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TxtAlmacen control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TxtAlmacen As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TxtWhsCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TxtWhsCode As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TxtWhsName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TxtWhsName As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TxtDistribuidor control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TxtDistribuidor As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TxtSlpCode control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TxtSlpCode As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TxtSlpName control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TxtSlpName As Global.System.Web.UI.WebControls.TextBox
+
     '''<summary>
     '''TxtCardName control.
     '''</summary>
@@ -138,7 +138,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtCardName As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''LstTP control.
     '''</summary>
@@ -147,7 +147,16 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LstTP As Global.System.Web.UI.WebControls.ListBox
-    
+
+    '''<summary>
+    '''btnAddTP control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents btnAddTP As Global.System.Web.UI.HtmlControls.HtmlAnchor
+
     '''<summary>
     '''LstDirs control.
     '''</summary>
@@ -156,7 +165,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LstDirs As Global.System.Web.UI.WebControls.ListBox
-    
+
     '''<summary>
     '''LblDE3 control.
     '''</summary>
@@ -165,7 +174,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblDE3 As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtDir control.
     '''</summary>
@@ -174,7 +183,25 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtDir As Global.System.Web.UI.WebControls.TextBox
-    
+
+    '''<summary>
+    '''TextMail control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextMail As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TextComment control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextComment As Global.System.Web.UI.WebControls.TextBox
+
     '''<summary>
     '''TxtItemCode control.
     '''</summary>
@@ -183,7 +210,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtItemCode As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''LblNombre control.
     '''</summary>
@@ -192,7 +219,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblNombre As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''Disponible control.
     '''</summary>
@@ -201,7 +228,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents Disponible As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtCantidad control.
     '''</summary>
@@ -210,7 +237,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtCantidad As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''LblPrecio control.
     '''</summary>
@@ -219,7 +246,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblPrecio As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblMoneda control.
     '''</summary>
@@ -228,7 +255,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMoneda As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtDescuento control.
     '''</summary>
@@ -237,7 +264,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtDescuento As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''LblImpuesto control.
     '''</summary>
@@ -246,7 +273,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblImpuesto As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''LblIVA control.
     '''</summary>
@@ -255,7 +282,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblIVA As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''LblSubTotal control.
     '''</summary>
@@ -264,7 +291,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LblSubTotal As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''lblMon control.
     '''</summary>
@@ -273,7 +300,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblMon As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''TxtDisp control.
     '''</summary>
@@ -282,7 +309,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtDisp As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''TxtTP control.
     '''</summary>
@@ -291,7 +318,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents TxtTP As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''btnAdd control.
     '''</summary>
@@ -300,7 +327,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnAdd As Global.System.Web.UI.WebControls.Button
-    
+
     '''<summary>
     '''LstPromos control.
     '''</summary>
@@ -309,7 +336,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LstPromos As Global.System.Web.UI.WebControls.ListBox
-    
+
     '''<summary>
     '''LstMV control.
     '''</summary>
@@ -318,7 +345,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LstMV As Global.System.Web.UI.WebControls.ListBox
-    
+
     '''<summary>
     '''LstStock control.
     '''</summary>
@@ -327,7 +354,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LstStock As Global.System.Web.UI.WebControls.ListBox
-    
+
     '''<summary>
     '''RefeBanco control.
     '''</summary>
@@ -336,7 +363,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents RefeBanco As Global.System.Web.UI.WebControls.TextBox
-    
+
     '''<summary>
     '''LstMP control.
     '''</summary>
@@ -345,7 +372,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LstMP As Global.System.Web.UI.WebControls.ListBox
-    
+
     '''<summary>
     '''LstFP control.
     '''</summary>
@@ -354,7 +381,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LstFP As Global.System.Web.UI.WebControls.ListBox
-    
+
     '''<summary>
     '''LstUso control.
     '''</summary>
@@ -363,7 +390,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LstUso As Global.System.Web.UI.WebControls.ListBox
-    
+
     '''<summary>
     '''LstTipo control.
     '''</summary>
@@ -372,7 +399,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents LstTipo As Global.System.Web.UI.WebControls.ListBox
-    
+
     '''<summary>
     '''lblErrId control.
     '''</summary>
@@ -381,7 +408,7 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents lblErrId As Global.System.Web.UI.WebControls.Label
-    
+
     '''<summary>
     '''btnGenerarPedido control.
     '''</summary>
@@ -390,4 +417,148 @@ Partial Public Class eOrders
     '''To modify move field declaration from designer file to code-behind file.
     '''</remarks>
     Protected WithEvents btnGenerarPedido As Global.System.Web.UI.WebControls.Button
+
+    '''<summary>
+    '''TipoTP control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TipoTP As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''TextNombre control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextNombre As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TextAPP control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextAPP As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TextAPM control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextAPM As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TextRFC control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextRFC As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TextCalle control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextCalle As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TextNoEx control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextNoEx As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TextNoInt control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextNoInt As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TextColonia control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextColonia As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TextMunicipio control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextMunicipio As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TextCuidad control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextCuidad As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TextEstado control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextEstado As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''TextPais control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextPais As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''TextCP control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents TextCP As Global.System.Web.UI.WebControls.TextBox
+
+    '''<summary>
+    '''DropDownTipoC control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DropDownTipoC As Global.System.Web.UI.WebControls.DropDownList
+
+    '''<summary>
+    '''DropDownRegimen control.
+    '''</summary>
+    '''<remarks>
+    '''Auto-generated field.
+    '''To modify move field declaration from designer file to code-behind file.
+    '''</remarks>
+    Protected WithEvents DropDownRegimen As Global.System.Web.UI.WebControls.DropDownList
 End Class

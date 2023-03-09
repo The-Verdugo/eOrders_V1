@@ -11,15 +11,18 @@
         #no-more-tables tr {
         display:block;
         }
-         
+        .campo-vacio {
+            border-color: red !important;
+            background-color: #ffe6e6 !important;
+        }
         /* Hide table headers (but not display: none;, for accessibility) */
         #no-more-tables thead tr {
-        position: absolute;
-        top: -9999px;
-        left: -9999px;
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
         }
-         
-       /* #no-more-tables tr { border: 1px solid #ccc; }*/
+
+        /* #no-more-tables tr { border: 1px solid #ccc; }*/
           
         #no-more-tables td {
         /* Behave like a "row" */
@@ -186,6 +189,11 @@
 </script><% End If %>
   <div class="form-row">
     <h3 class="form-group col-md-12">Datos Generales</h3>
+      <div class="form-group col-md-3">
+          <label for="LblCardCode">Código de cliente</label>
+          <div id="scrollable-dropdown-menu">
+              <asp:TextBox ID="TxtCardCode" runat="server" CssClass="typeahead form-control" AutoPostBack="True" OnTextChanged="TxtCardCode_TextChanged" onblur="javascript:setTimeout('__doPostBack(\'ctl00$MainContent$TxtCardCode\',\'\')', 0)"></asp:TextBox></div>
+      </div>
     <div class="form-group col-md-3">
       <label for="LblDocDate">Fecha de solicitud</label>
       <asp:TextBox ID="TxtDocDate" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox>
@@ -198,10 +206,6 @@
       <label for="LblDistribuidor">Distribuidor</label>
       <asp:TextBox ID="TxtDistribuidor" runat="server" CssClass="form-control" ReadOnly="true"></asp:TextBox><asp:TextBox ID="TxtSlpCode" runat="server" CssClass="form-control" ReadOnly="true" Visible="false"></asp:TextBox><asp:TextBox ID="TxtSlpName" runat="server" CssClass="form-control" ReadOnly="true" Visible="false"></asp:TextBox>
     </div>
-    <div class="form-group col-md-3">
-      <label for="LblCardCode">Código de cliente</label>
-      <div id="scrollable-dropdown-menu"><asp:TextBox ID="TxtCardCode" runat="server" CssClass="typeahead form-control" AutoPostBack="True" OnTextChanged="TxtCardCode_TextChanged" onblur="javascript:setTimeout('__doPostBack(\'ctl00$MainContent$TxtCardCode\',\'\')', 0)"></asp:TextBox></div>
-    </div>
   </div>
  <div class="form-row">
     <div class="form-group col-md-3">
@@ -211,6 +215,7 @@
     <div class="form-group col-md-3">
       <label for="LblTP">Tercera persona</label>
         <asp:ListBox ID="LstTP" runat="server" CssClass="form-control"></asp:ListBox>
+        <a id="btnAddTP" runat="server" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#ModalTP">Agregar Nuevo</a>
     </div>
     <div class="form-group col-md-3">
       <label for="LblDE">Dirección de envío</label>&nbsp;<a href="ModCustomer.aspx?cardcode=<%=TxtCardCode.Text.ToString%>">[Modificar]</a>
@@ -220,7 +225,18 @@
         <label for="LblDE2"><asp:Label ID="LblDE3" runat="server" Text=""></asp:Label></label>
         <asp:TextBox ID="TxtDir" runat="server" CssClass="form-control" Height="98px" TextMode="MultiLine"></asp:TextBox>
     </div>
+      <div class="form-group col-md-4">
+                <label for="Lblmail">e-mail cliente</label>
+                <asp:TextBox ID="TextMail" runat="server" CssClass="form-control"></asp:TextBox>
+            </div>
   </div>
+     <div class="form-row">
+            <div class="form-group col-md-4">
+                <label for="LblCardName">Comentario</label>
+                <asp:TextBox ID="TextComment" runat="server" CssClass="form-control" TextMode="MultiLine"></asp:TextBox>
+            </div>
+        
+        </div>
             <div class="form-row">
                  <h3 id="deleted" class="form-group col-md-12">Artículos</h3>
                 <div id="no-more-tables">
@@ -324,6 +340,103 @@
   </div>
  <div align="center"><br />&nbsp;<asp:Label ID="lblErrId" runat="server" Text="" Visible="false"></asp:Label><asp:Button ID="btnGenerarPedido" runat="server" Text="Generar" CssClass="btn btn-lg btn-primary btn-block" /><br />&nbsp;</div>
 </div>
+
+       <!-- Modal -->
+        <div class="modal fade" id="ModalTP" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-sm" role="form">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Agregar Tercera persona</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row-no-gutters">
+                            <label>Tipo*</label>
+                            <asp:DropDownList runat="server" ID="TipoTP" CssClass="form-control">
+                                <asp:ListItem Text="M - Mostrador" Value="M"></asp:ListItem>
+                                <asp:ListItem Text="ME - Mostrador Externo" Value="ME"></asp:ListItem>
+                                <asp:ListItem Text="P - Propios" Value="P" Selected="True"></asp:ListItem>
+                                <asp:ListItem Text="T - Tercero" Value="T"></asp:ListItem>
+                            </asp:DropDownList>
+
+                            <label>Nombre*</label>
+                            <asp:TextBox ID="TextNombre" runat="server" CssClass="form-control"></asp:TextBox>
+
+                            <label>Apellido paterno*</label>
+                            <asp:TextBox ID="TextAPP" runat="server" CssClass="form-control"></asp:TextBox>
+
+                            <label>Apellido Materno</label>
+                            <asp:TextBox ID="TextAPM" runat="server" CssClass="form-control"></asp:TextBox>
+
+                            <label>RFC*</label>
+                            <asp:TextBox ID="TextRFC" runat="server" CssClass="form-control"></asp:TextBox>
+                            <hr />
+                            <h4>Domicilio</h4>
+                            <label>Calle*</label>
+                            <asp:TextBox ID="TextCalle" runat="server" CssClass="form-control"></asp:TextBox>
+                            <label>No. Exterior*</label>
+                            <asp:TextBox ID="TextNoEx" runat="server" CssClass="form-control"></asp:TextBox>
+                            <label>No. Interior</label>
+                            <asp:TextBox ID="TextNoInt" runat="server" CssClass="form-control"></asp:TextBox>
+                            <label>Colonia</label>
+                            <asp:TextBox ID="TextColonia" runat="server" CssClass="form-control"></asp:TextBox>
+                            <label>Municipio</label>
+                            <asp:TextBox ID="TextMunicipio" runat="server" CssClass="form-control"></asp:TextBox>
+                            <label>Cuidad</label>
+                            <asp:TextBox ID="TextCuidad" runat="server" CssClass="form-control"></asp:TextBox>
+                            <label>Estado*</label>
+                            <asp:TextBox ID="TextEstado" runat="server" CssClass="form-control"></asp:TextBox>
+                            <label>Pais*</label>
+                            <asp:DropDownList ID="TextPais" runat="server" CssClass="form-control">
+                                <asp:ListItem Text="Mexico" Value="MX"></asp:ListItem>
+                            </asp:DropDownList>
+                            <label>C.P.*</label>
+                            <asp:TextBox ID="TextCP" runat="server" CssClass="form-control"></asp:TextBox>
+                            <hr />
+                            <label>Tipo C*</label>
+                            <asp:DropDownList runat="server" ID="DropDownTipoC" CssClass="form-control">
+                                <asp:ListItem Text="M - Medicos" Value="M"></asp:ListItem>
+                                <asp:ListItem Text="H - Hospitales" Value="H"></asp:ListItem>
+                                <asp:ListItem Text="A - Aseguradoras" Value="A"></asp:ListItem>
+                                <asp:ListItem Text="E - Empresas" Value="E"></asp:ListItem>
+                                <asp:ListItem Text="F - Farmacias" Value="F"></asp:ListItem>
+                            </asp:DropDownList>
+                            <label>Regimen Fiscal*</label>
+                            <asp:DropDownList runat="server" ID="DropDownRegimen" CssClass="form-control">
+                                <asp:ListItem Text="601 - General de ley personas morales" Value="601"></asp:ListItem>
+                                <asp:ListItem Text="603 - Personas Morales con Fines no lucrativos" Value="603"></asp:ListItem>
+                                <asp:ListItem Text="605 - Sueldos y Salarios e Ingresos Asimilados a Salarios" Value="605"></asp:ListItem>
+                                <asp:ListItem Text="606 - Arrendamiento" Value="606"></asp:ListItem>
+                                <asp:ListItem Text="607 - Régimen de Enajenación o Adquisicion de Bienes" Value="607"></asp:ListItem>
+                                <asp:ListItem Text="608 - Demás ingresos" Value="608"></asp:ListItem>
+                                <asp:ListItem Text="609 - Consolidación" Value="609"></asp:ListItem>
+                                <asp:ListItem Text="610 - Residentes en el Extrangero sin establecimiento Permanente en México" Value="610"></asp:ListItem>
+                                <asp:ListItem Text="611 - Ingresos por Dividendos (socios y accionistas)" Value="611"></asp:ListItem>
+                                <asp:ListItem Text="612 - Personas fisicas con actividades empresariales y profesionales" Value="612"></asp:ListItem>
+                                <asp:ListItem Text="614 - Ingresos por intereses" Value="614"></asp:ListItem>
+                                <asp:ListItem Text="615 - Régimen de los ingresos por obtencion de premios" Value="615"></asp:ListItem>
+                                <asp:ListItem Text="616 - Sin obligaciones fiscales" Value="616"></asp:ListItem>
+                                <asp:ListItem Text="620 - Sociedades Cooperativas de Producción que optan por diferir sus ingresos" Value="620"></asp:ListItem>
+                                <asp:ListItem Text="621 - Incorporación fiscal" Value="621"></asp:ListItem>
+                                <asp:ListItem Text="622 - Actividades agrícolas, Ganaderas, Silvícolas y Pesqueras" Value="622"></asp:ListItem>
+                                <asp:ListItem Text="623 - Opcional para grupos de sociedades" Value="623"></asp:ListItem>
+                                <asp:ListItem Text="624 - Coordinados" Value="624"></asp:ListItem>
+                                <asp:ListItem Text="625 - Régimen de las actividades Empresariales con ingresos a través de plataformas tecnológicas" Value="625"></asp:ListItem>
+                                <asp:ListItem Text="626 - Régimen simplificado de confianza" Value="626"></asp:ListItem>
+                                <asp:ListItem Text="628 - Hidrocarburos" Value="628"></asp:ListItem>
+                                <asp:ListItem Text="629 - De los regimenes fiscales preferentes y de las empresas multinacionales" Value="629"></asp:ListItem>
+                                <asp:ListItem Text="630 - Enajenación de acciones en la bolsa de valores" Value="630"></asp:ListItem>
+                            </asp:DropDownList>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+                        <%--<asp:Button runat="server" type="button" ID="btnsaveContacto" OnClick="btnsaveContacto_Click" class="btn btn-primary" Text="Guardar"></asp:Button>--%>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 <script src="https://twitter.github.io/typeahead.js/js/handlebars.js"></script>
 <script src="https://twitter.github.io/typeahead.js/js/jquery-1.10.2.min.js"></script>
 <script src="https://twitter.github.io/typeahead.js/releases/latest/typeahead.bundle.js"></script>
@@ -350,5 +463,54 @@
         });
 
     });
+
+    function agregarTerceraPersona() {
+        // Obtener los campos del formulario
+        var tipoTP = document.getElementById("TipoTP");
+        var nombre = document.getElementById("TextNombre");
+        var app = document.getElementById("TextAPP");
+        var apm = document.getElementById("TextAPM");
+        var rfc = document.getElementById("TextRFC");
+        var calle = document.getElementById("TextCalle");
+        var noEx = document.getElementById("TextNoEx");
+        var noInt = document.getElementById("TextNoInt");
+        var colonia = document.getElementById("TextColonia");
+        var municipio = document.getElementById("TextMunicipio");
+        var cuidad = document.getElementById("TextCuidad");
+        var estado = document.getElementById("TextEstado");
+        var pais = document.getElementById("TextPais");
+        var cp = document.getElementById("TextCP");
+        var tipoC = document.getElementById("DropDownTipoC");
+        var regimen = document.getElementById("DropDownRegimen");
+
+        // Establecer los campos como solo lectura
+        tipoTP.setAttribute("readonly", true);
+        nombre.setAttribute("readonly", true);
+        app.setAttribute("readonly", true);
+        apm.setAttribute("readonly", true);
+        rfc.setAttribute("readonly", true);
+        calle.setAttribute("readonly", true);
+        noEx.setAttribute("readonly", true);
+        noInt.setAttribute("readonly", true);
+        colonia.setAttribute("readonly", true);
+        municipio.setAttribute("readonly", true);
+        cuidad.setAttribute("readonly", true);
+        estado.setAttribute("readonly", true);
+        pais.setAttribute("readonly", true);
+        cp.setAttribute("readonly", true);
+        tipoC.setAttribute("readonly", true);
+        regimen.setAttribute("readonly", true);
+
+        // Verificar los campos obligatorios
+        var camposObligatorios = [tipoTP, nombre, app, rfc, calle, noEx, estado, pais, cp];
+        for (var i = 0; i < camposObligatorios.length; i++) {
+            if (camposObligatorios[i].value.trim() === "") {
+                camposObligatorios[i].classList.add("campo-vacio");
+            }
+        }
+    }
 </script>
+
+<!-- Agregar esta clase CSS al archivo de estilo -->
+
 </asp:Content>
