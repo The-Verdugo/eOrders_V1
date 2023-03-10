@@ -557,6 +557,12 @@ Public Class eOrders
                 Dim AutBO As Boolean
                 Dim LineasBO As String = "<Document_Lines>"
                 Dim LineasNL As String = "<Document_Lines>"
+                Dim array() As detalles
+                array = New detalles(ln) {}
+                Dim RowsHTML As String = ""
+                Dim Itotal As Double
+                Dim Stotal As Double
+                Dim Total As Double
                 For l = 0 To ln - 1
                     Moneda = Arts.Rows.Item(l).Item(4).ToString
                     Normal = Arts.Rows.Item(l).Item(12).ToString
@@ -565,6 +571,10 @@ Public Class eOrders
                     Try
                         If CInt(Normal) > 0 Then
                             LineasNL = LineasNL & "<row><LineNum>" & r & "</LineNum><ItemCode>" & Arts.Rows.Item(l).Item(0).ToString & "</ItemCode><U_observaciones>COMPROMETIDO</U_observaciones><Quantity>" & Normal & "</Quantity><UnitPrice>" & Arts.Rows.Item(l).Item(3).ToString & "</UnitPrice><Currency>" & Moneda & "</Currency><DiscountPercent>" & Arts.Rows.Item(l).Item(5).ToString & "</DiscountPercent><TaxCode>" & Arts.Rows.Item(l).Item(6).ToString & "</TaxCode><WarehouseCode>" & Arts.Rows.Item(l).Item(11).ToString & "</WarehouseCode></row>"
+                            RowsHTML += "<tr><td><font color=""#6e6e6e"">" & Arts.Rows.Item(l).Item(0).ToString & "</font></td><td><font color=""#6e6e6e"">" & Arts.Rows.Item(l).Item(1).ToString & "</font></td><td><font color=""#6e6e6e"">" & Normal & "</font></td></tr>"
+                            Itotal += Arts.Rows.Item(l).Item(7)
+                            Stotal += Arts.Rows.Item(l).Item(8)
+                            Total = Stotal + Itotal
                             r = r + 1
                             AutNl = True
                         End If
@@ -575,6 +585,10 @@ Public Class eOrders
                     Try
                         If CInt(BackOrder) > 0 Then
                             LineasBO = LineasBO & "<row><LineNum>" & r & "</LineNum><ItemCode>" & Arts.Rows.Item(l).Item(0).ToString & "</ItemCode><U_observaciones>BACKORDER</U_observaciones><Quantity>" & BackOrder & "</Quantity><UnitPrice>" & Arts.Rows.Item(l).Item(3).ToString & "</UnitPrice><Currency>" & Moneda & "</Currency><DiscountPercent>" & Arts.Rows.Item(l).Item(5).ToString & "</DiscountPercent><TaxCode>" & Arts.Rows.Item(l).Item(6).ToString & "</TaxCode><WarehouseCode>" & Arts.Rows.Item(l).Item(11).ToString & "</WarehouseCode></row>"
+                            RowsHTML += "<tr><td><font color=""#6e6e6e"">" & Arts.Rows.Item(l).Item(0).ToString & "</font></td><td><font color=""#6e6e6e"">" & Arts.Rows.Item(l).Item(1).ToString & "</font></td><td><font color=""#6e6e6e"">" & BackOrder & "</font></td></tr>"
+                            Itotal += Arts.Rows.Item(l).Item(7)
+                            Stotal += Arts.Rows.Item(l).Item(8)
+                            Total = Stotal + Itotal
                             r = r + 1
                             AutBO = True
                         End If
@@ -647,12 +661,12 @@ Public Class eOrders
                                 DESAPbo = enviobo.ChildNodes.Item(0).ChildNodes.Item(0).ChildNodes.Item(0).InnerText
                                 Dim UpdDocbo As String = "<env:Envelope xmlns:env=""http://www.w3.org/2003/05/soap-envelope""><env:Header><SessionID>" & SessionId & "</SessionID></env:Header><env:Body><dis:UpdateObject xmlns:dis=""http//www.sap.com/SBO/DIS""><BOM><BO><AdmInfo><Object>oOrders</Object></AdmInfo><QueryParams><DocEntry>" & DESAPbo & "</DocEntry></QueryParams><Documents><row><NumAtCard>" & "C" & TxtSlpCode.Text.ToString & "-" & DESAPbo & "</NumAtCard></row></Documents></BO></BOM></dis:UpdateObject></env:Body></env:Envelope>"
                                 Dim ActPedidobo As System.Xml.XmlNode = DS.Interact(UpdDocbo)
-                                Dim Mailbo As String = Funciones.EnviaMail("C" & TxtSlpCode.Text.ToString & "-" & DESAPbo, TextMail.Text.ToString)
+                                Dim Mailbo As String = Funciones.EnviaMail("C" & TxtSlpCode.Text.ToString & "-" & DESAPbo, TextMail.Text.ToString, RowsHTML, Stotal, Itotal, Total, TxtCardName.Text.ToString)
                                 OkMsg.Text = OkMsg.Text & "<br /><br />Se ha generado el complemento de pedido electrónico para backorder <b>" & "C" & TxtSlpCode.Text.ToString & "-" & DESAPbo & "</b> de forma satisfactoria!"
                             End If
                         End If
                         SaveDocument("C", OkNum.Text.ToString)
-                        Dim Mail As String = Funciones.EnviaMail(OkNum.Text.ToString, TextMail.Text.ToString)
+                        Dim Mail As String = Funciones.EnviaMail(OkNum.Text.ToString, TextMail.Text.ToString, RowsHTML, Stotal, Itotal, Total, TxtCardName.Text.ToString)
                         If Mail <> "" Then
                             OkMsg.Text = OkMsg.Text & "<br /><br />" & Mail.Replace(";", "<br />")
                         End If
@@ -676,11 +690,12 @@ Public Class eOrders
                         Dim UpdDoc As String = "<env:Envelope xmlns:env=""http://www.w3.org/2003/05/soap-envelope""><env:Header><SessionID>" & SessionId & "</SessionID></env:Header><env:Body><dis:UpdateObject xmlns:dis=""http//www.sap.com/SBO/DIS""><BOM><BO><AdmInfo><Object>oOrders</Object></AdmInfo><QueryParams><DocEntry>" & DESAPbo2 & "</DocEntry></QueryParams><Documents><row><NumAtCard>" & OkNum.Text.ToString & "</NumAtCard></row></Documents></BO></BOM></dis:UpdateObject></env:Body></env:Envelope>"
                         Dim ActPedido As System.Xml.XmlNode = DS.Interact(UpdDoc)
                         SaveDocument("C", OkNum.Text.ToString)
-                        Dim Mail As String = Funciones.EnviaMail(OkNum.Text.ToString, TextMail.Text.ToString)
+                        Dim Mail As String = Funciones.EnviaMail(OkNum.Text.ToString, TextMail.Text.ToString, RowsHTML, Stotal, Itotal, Total, TxtCardName.Text.ToString)
                         If Mail <> "" Then
                             OkMsg.Text = OkMsg.Text & "<br /><br />" & Mail.Replace(";", "<br />")
                         End If
                     Else
+
                         lblErrId.Text = "Error"
                         ErrorNum.Text = "Error" & enviobo2.ChildNodes.Item(0).ChildNodes.Item(0).ChildNodes.Item(0).InnerText.Replace("env:Receiver", "").Replace("env:Sender", "")
                         ErrorMsg.Text = "Se ha producido un error, revise la información de referencia." & "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ " & enviobo2.ChildNodes.Item(0).ChildNodes.Item(0).ChildNodes.Item(1).InnerText & " ]"

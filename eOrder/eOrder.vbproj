@@ -229,6 +229,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.vb" />
     <Compile Include="App_Start\RouteConfig.vb" />
+    <Compile Include="Content\detalles.vb" />
     <Compile Include="eOrders.aspx.designer.vb">
       <DependentUpon>eOrders.aspx</DependentUpon>
     </Compile>

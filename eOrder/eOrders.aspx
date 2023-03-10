@@ -277,8 +277,8 @@
                                 <td data-title="I.V.A.">$ <%Iva = Arts.Rows.Item(l).Item(7)
                     ITotal = ITotal + Iva%><%=Format(CSng(Iva.ToString), "#,##0.00")%></td>
                                 <td data-title="Sub-Total">$ <% 
-                                                 STotal = Arts.Rows.Item(l).Item(8)
-                                                 Total = Total + STotal%><%=Format(CSng(STotal.ToString), "#,##0.00")%>&nbsp;<%=Mon%></td><%Dim nrow As Integer = Arts.Rows.Item(l).Item(9).ToString%>
+                STotal = Arts.Rows.Item(l).Item(8)
+                Total = Total + STotal%><%=Format(CSng(STotal.ToString), "#,##0.00")%>&nbsp;<%=Mon%></td><%Dim nrow As Integer = Arts.Rows.Item(l).Item(9).ToString%>
                                 <td data-title=""><input id="del.<%=nrow.ToString%>" type="button" value="x" class="btn btn-labeled btn-danger" onclick="window.location = 'eOrders.aspx?l=<%=nrow.ToString%>&c=<%=TxtCardCode.Text.ToString%>'" /></td>
                 			</tr>
                             <%Next%>

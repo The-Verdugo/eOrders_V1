@@ -8,8 +8,10 @@ Imports System.Xml
 
 Module Funciones
 
-    Public Function EnviaMail(ByVal TrackId As String, ByVal mail As String) As String
+    Public Function EnviaMail(ByVal TrackId As String, ByVal mail As String, ByVal arts As String, ByVal subt As Double, ByVal iva As Double, ByVal total As Double, ByVal nombre As String) As String
         Dim dtResp As DataTable
+        'Dim _arts As DataTable
+        '_arts = arts
         Dim MailTo, MailCC, MailResp As String
         MailTo = ""
         MailCC = ""
@@ -42,7 +44,7 @@ Module Funciones
                         MailTo = MailTo + mail
                     End If
                     If MailTo.Contains("@") And MailCC.Contains("@") Then
-                        MailResp = SendMail(MailTo, MailCC, TrackId)
+                        MailResp = SendMail(MailTo, MailCC, TrackId, arts, subt, iva, total, nombre)
                     Else
                         MailResp = ""
                     End If
@@ -62,17 +64,134 @@ Module Funciones
         Return MailResp
     End Function
 
-    Private Function SendMail(ByVal Destinatarios As String, ByVal CCDestinatarios As String, ByVal NumAtCard As String) As String
+    Private Function SendMail(ByVal Destinatarios As String, ByVal CCDestinatarios As String, ByVal NumAtCard As String, ByVal arts As String, ByVal subt As Double, ByVal iva As Double, ByVal total As Double, ByVal nombre As String) As String
         Dim Email As New System.Net.Mail.MailMessage
         Dim MailServer As New System.Net.Mail.SmtpClient("smtp.office365.com")
         Dim SenderAddress As New System.Net.Mail.MailAddress(ToolReadSettings("SMTPUserName", "facturasgdl@gvi.com.mx"), ToolReadSettings("SMTPTitle", "Grupo Venta Internacional"))
         Dim SendResponse As String = String.Empty
         Try
-            Dim Body As String = "<html xmlns=""http://www.w3.org/1999/xhtml""><head><meta http-equiv=""Content-Type"" content=""text/html; charset=utf-8"" /><title>Grupo Venta Internacional</title><style type=""text/css"">body {font-family: Verdana, Geneva, sans-serif;font-size: 12px; background-color:#F5F5F5;} td,th {font-family: Verdana, Geneva, sans-serif;font-size: 12px; background-color:#FFF;} table {font-family: Verdana, Geneva, sans-serif;font-size: 12px; background-color:#FFF; width:790px;}</style></head><body><font face=""verdana""><table border=""0"" align=""center"" cellpadding=""0"" cellspacing=""0""><tr><td align=""center""><table border=""0"" align=""center"" cellpadding=""0"" cellspacing=""0""><tr><td colspan=""2"" align=""center""><font color=""#ee7103""><h3>SERVICIO ELECTRONICO DE ATENCION A CLIENTES</h3></font></td></tr><tr><td colspan=""2"" align=""center"">&nbsp;</td></tr><tr bgcolor=""#FFFFFF""><td colspan=""2"" align=""right""><font color=""#6e6e6e"">FECHAHORA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font></td></tr><tr><td colspan=""2"" align=""center"">&nbsp;</td></tr><tr><td align=""center""><font color=""#6e6e6e""><p>Se ha realizado el siguiente <b>Pedido #</b></p><h1>TRACKID</h1></font></td><td align=""center""><img src=""http://it.gvi.com.mx/images/caro.png"" style=""width:175px;""></td></tr><tr><td colspan=""2"" align=""center"">&nbsp;</td></tr><tr><td colspan=""2"" align=""center""><font color=""#6e6e6e""><p>Conozca en cada momento el estado que guarda cada uno de sus pedidos, utilizando la opción:</p></font></td></tr><tr><td align=""center""><font color=""#6e6e6e""><p><a href=""http://it.gvi.com.mx/eOrders/Tracking?eOrder=TRACKID""><img src=""http://it.gvi.com.mx/images/checo.png"" style=""width:128px;"" /></a><br /><b>UBICAR</b></p></font></td><td align=""center""><font color=""#6e6e6e""><p><a href=""http://it.gvi.com.mx/eOrders/Tracking?eOrder=TRACKID""><img src=""https://chart.googleapis.com/chart?cht=qr&chl=http://it.gvi.com.mx/eOrders/Tracking?eOrder=TRACKID&chs=122x122&choe=UTF-8&chld=H|0"" style=""width:122px;"" /></a><br /><b>Escanee</b> para conocer el estado de su pedido</p></font></td></tr></table><hr color=""#ee7103"" size=""8px""><img src=""http://it.gvi.com.mx/images/footmail.png"" style=""width:790px;"" /></td></tr></table></font></body></html>"
+            Dim Body As String = "<html xmlns="" http://www.w3.org/1999/xhtml"">
+
+<head>
+    <meta http-equiv="" Content-Type"" content="" text/html; charset=utf-8"" />
+    <title>Grupo Venta Internacional</title>
+    <style type="" text/css"">
+        body {font-family: Verdana, Geneva, sans-serif;font-size: 12px; background-color:#F5F5F5;} td,th {font-family: Verdana, Geneva, sans-serif;font-size: 12px; background-color:#FFF;} table {font-family: Verdana, Geneva, sans-serif;font-size: 12px; background-color:#FFF; width:790px;}
+    </style>
+</head>
+
+<body>
+    <font face="" verdana"">
+        <table border="" 0"" align="" center"" cellpadding="" 0"" cellspacing="" 0"">
+            <tr>
+                <td align="" center"">
+                    <table border="" 0"" align="" center"" cellpadding="" 0"" cellspacing="" 0"">
+                        <tr>
+                            <td colspan="" 2"" align="" center"">
+                                <font color="" #ee7103"">
+                                    <h3>SERVICIO ELECTRONICO DE ATENCION A CLIENTES</h3>
+                                </font>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="" 2"" align="" center"">&nbsp;</td>
+                        </tr>
+                        <tr bgcolor="" #FFFFFF"">
+                            <td colspan="" 2"" align="" right"">
+                                <font color="" #6e6e6e"">FECHAHORA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</font>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="" 2"" align="" center"">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td align="" center"">
+                                <font color="" #6e6e6e"">
+                                    <p>Se ha realizado el siguiente <b>Pedido #</b></p>
+                                    <h1>TRACKID</h1>
+                                </font>
+                            </td>
+                            <td align="" center""> <font color="" #6e6e6e"">Nombre del cliente: <b>CLIENTE</b></font></td>
+                        </tr>
+                        <tr>
+                            <td colspan=""2"" align=""center"">
+                                <font color="" #6e6e6e""><p>Detalles del pedido</p></font>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="" 2"" align="" center"">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td height=""40%""><font color=""#6e6e6e"">Código</font></td>
+                            <td height=""40%""><font color=""#6e6e6e"">Descripción</font></td>
+                            <td height=""20%""><font color=""#6e6e6e"">Cantidad</font></td>
+                        </tr>
+                        <tr>
+                            <td colspan="" 2"" align="" center"">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="" 2"" align="" center"">&nbsp;</td>
+                        </tr>
+                       " & arts & "
+                        <tr>
+                            <td colspan="" 2"" align="" center"">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td height=""40%""><font color=""#6e6e6e"">Sub Total: $SUBTOTAL</font></td>
+                        </tr>
+                        <tr>
+                            <td height=""40%""><font color=""#6e6e6e"">IVA: $IVAPAR</font></td>
+                        </tr>
+                        <tr>
+                            <td height=""40%""><font color=""#6e6e6e"">Total: $TOTAL</font></td>
+                        </tr>
+                        <tr>
+                            <td colspan="" 2"" align="" center"">&nbsp;</td>
+                        </tr>
+                        <tr>
+                            <td colspan="" 2"" align="" center"">
+                                <font color="" #6e6e6e"">
+                                    <p>Conozca en cada momento el estado que guarda cada uno de sus pedidos, utilizando
+                                        la opción:</p>
+                                </font>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="" center"">
+                                <font color="" #6e6e6e"">
+                                    <p><a href="" http://it.gvi.com.mx/eOrders/Tracking?eOrder=TRACKID""><img src=""
+                                                http://it.gvi.com.mx/images/checo.png"" style=""
+                                                width:128px;"" /></a><br /><b>UBICAR</b></p>
+                                </font>
+                            </td>
+                            <td align="" center"">
+                                <font color="" #6e6e6e"">
+                                    <p><a href="" http://it.gvi.com.mx/eOrders/Tracking?eOrder=TRACKID""><img src=""
+                                                https://chart.googleapis.com/chart?cht=qr&chl=http://it.gvi.com.mx/eOrders/Tracking?eOrder=TRACKID&chs=122x122&choe=UTF-8&chld=H|0""
+                                                style="" width:122px;"" /></a><br /><b>Escanee</b> para conocer el
+                                        estado de su pedido</p>
+                                </font>
+                            </td>
+                        </tr>
+                    </table>
+                    <hr color="" #ee7103"" size="" 8px""><img src="" http://it.gvi.com.mx/images/footmail.png"" style=""
+                        width:790px;"" />
+                </td>
+            </tr>
+        </table>
+    </font>
+</body>
+
+</html>"
             'ToolReadSettings("BodyMail", "&lt;html&gt;&lt;head&gt;&lt;title&gt;Grupo Venta Internacional&lt;&#47;title&gt;&lt;&#47;head&gt;&lt;body style='font-family: Arial,sans-serif;' &gt;&lt;font face=&#39;verdana&#39;&gt;&lt;table width=&#39;100%&#39; border=&#39;0&#39; align=&#39;center&#39; cellpadding=&#39;0&#39; cellspacing=&#39;0&#39;&gt;&lt;tr&gt;&lt;td align=&#39;center&#39; valign=&#39;middle&#39;&gt;&lt;table width=&#39;100%&#39; border=&#39;0&#39; align=&#39;center&#39; cellpadding=&#39;0&#39; cellspacing=&#39;0&#39;&gt;&lt;tr&gt;&lt;td align=&#39;center&#39; valign=&#39;middle&#39;&gt; &lt;&#47;td&gt;&lt;td align=&#39;right&#39; valign=&#39;middle&#39;&gt;&lt;font color=&#39;#6e6e6e&#39; size=&#39;3&#39;&gt;FECHAHORA      &lt;&#47;font&gt;&lt;&#47;td&gt;&lt;&#47;tr&gt;&lt;tr&gt;&lt;td colspan=&#39;2&#39; align=&#39;center&#39; valign=&#39;middle&#39;&gt; &lt;&#47;td&gt;&lt;&#47;tr&gt;&lt;tr&gt;&lt;td colspan=&#39;2&#39; align=&#39;center&#39; valign=&#39;middle&#39;&gt;&lt;font color=&#39;#ee7103&#39;&gt;&lt;h3&gt;SERVICIO ELECTRONICO DE ATENCION A CLIENTES&lt;&#47;h3&gt;&lt;&#47;font&gt;&lt;&#47;td&gt;&lt;&#47;tr&gt;&lt;tr&gt;&lt;td colspan=&#39;2&#39; align=&#39;center&#39; valign=&#39;middle&#39;&gt; &lt;&#47;td&gt;&lt;&#47;tr&gt;&lt;tr&gt;&lt;td align=&#39;center&#39; valign=&#39;middle&#39;&gt;&lt;font color=&#39;#6e6e6e&#39; size=&#39;3&#39;&gt;&lt;p&gt;Se ha realizado el siguiente &lt;b&gt;Pedido #&lt;&#47;b&gt;&lt;&#47;p&gt;&lt;h1&gt;TRACKID&lt;&#47;h1&gt;&lt;&#47;font&gt;&lt;&#47;td&gt;&lt;td align=&#39;center&#39; valign=&#39;middle&#39;&gt;&lt;img src=&#39;http:&#47;&#47;it.gvi.com.mx&#47;images&#47;caro.png&#39; width=&#39;300px&#39;&gt;&lt;&#47;td&gt;&lt;&#47;tr&gt;&lt;tr&gt;&lt;td colspan=&#39;2&#39; align=&#39;center&#39; valign=&#39;middle&#39;&gt; &lt;&#47;td&gt;&lt;&#47;tr&gt;&lt;tr&gt;&lt;td colspan=&#39;2&#39; align=&#39;center&#39; valign=&#39;middle&#39;&gt;&lt;font color=&#39;#6e6e6e&#39; size=&#39;2&#39;&gt;&lt;p&gt;Conozca en cada momento el estado que guarda cada uno de sus pedidos, utilizando la opción:&lt;br &#47;&gt; &lt;a href=&#39;http:&#47;&#47;it.gvi.com.mx&#47;eOrders&#47;Tracking?eOrder=TRACKID&#39;&gt;&lt;img src=&#39;http:&#47;&#47;it.gvi.com.mx&#47;images&#47;checo.png&#39; width=&#39;128px&#39; &#47;&gt;&lt;&#47;a&gt;&lt;br &#47;&gt;&lt;b&gt;UBICAR&lt;&#47;b&gt;&lt;&#47;p&gt;&lt;&#47;font&gt;&lt;&#47;td&gt;&lt;&#47;tr&gt;&lt;&#47;table&gt;&lt;hr color=&#39;#ee7103&#39; size=&#39;8px&#39;&gt;&lt;img src=&#39;http:&#47;&#47;it.gvi.com.mx&#47;images&#47;footmail.png&#39; width=&#39;100%&#39; &#47;&gt;&lt;&#47;td&gt;&lt;&#47;tr&gt;&lt;&#47;table&gt;&lt;&#47;font&gt;&lt;&#47;body&gt;&lt;&#47;html&gt;")
             Body = Body.Replace("TRACKID", NumAtCard)
             Dim fecha As String = Now.ToString("F", System.Globalization.CultureInfo.CreateSpecificCulture("es-MX"))
             Body = Body.Replace("FECHAHORA", fecha)
+            Body = Body.Replace("SUBTOTAL", subt)
+            Body = Body.Replace("IVAPAR", iva)
+            Body = Body.Replace("TOTAL", total)
+            Body = Body.Replace("CLIENTE", nombre)
+
             With Email
                 .From = SenderAddress
                 .Subject = "Pedido # " & NumAtCard
